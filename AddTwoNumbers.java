@@ -5,6 +5,7 @@ class Solution {
         ListNode current = dummy;
         int carry = 0;
 
+        
         while (l1 != null || l2 != null || carry != 0) {
 
             int val1 = (l1 != null) ? l1.val : 0;
@@ -25,3 +26,5 @@ class Solution {
         return dummy.next;
     }
 }
+
+//adding two number

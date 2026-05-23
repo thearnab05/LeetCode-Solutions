@@ -1,24 +1,24 @@
 class Solution {
-    public boolean isValid(String s) {
-        Stack<Character> stack = new Stack<>();
+    public List<String> generateParenthesis(int n) {
+        List<String> result = new ArrayList<>();
+        backtrack(result, "", 0, 0, n);
+        return result;
+    }
 
-        for (char ch : s.toCharArray()) {
-            if (ch == '(' || ch == '{' || ch == '[') {
-                stack.push(ch);
-            } 
-            else {
-                if (stack.isEmpty()) return false;
+    public void backtrack(List<String> result, String s,
+                          int open, int close, int n) {
 
-                char top = stack.pop();
-
-                if ((ch == ')' && top != '(') ||
-                    (ch == '}' && top != '{') ||
-                    (ch == ']' && top != '[')) {
-                    return false;
-                }
-            }
+        if (s.length() == 2 * n) {
+            result.add(s);
+            return;
         }
 
-        return stack.isEmpty();
+        if (open < n) {
+            backtrack(result, s + "(", open + 1, close, n);
+        }
+
+        if (close < open) {
+            backtrack(result, s + ")", open, close + 1, n);
+        }
     }
 }

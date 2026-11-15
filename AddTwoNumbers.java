@@ -1,30 +1,25 @@
-class Solution {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        
-        ListNode dummy = new ListNode(0);
-        ListNode current = dummy;
-        int carry = 0;
 
-        
-        while (l1 != null || l2 != null || carry != 0) {
+var twoSum = function(nums, target) {
 
-            int val1 = (l1 != null) ? l1.val : 0;
-            int val2 = (l2 != null) ? l2.val : 0;
+    let map = new Map();
 
-            int sum = val1 + val2 + carry;
+    for (let i = 0; i < nums.length; i++) {
 
-            carry = sum / 10;
+        let complement = target - nums[i];
 
-            current.next = new ListNode(sum % 10);
-
-            current = current.next;
-
-            if (l1 != null) l1 = l1.next;
-            if (l2 != null) l2 = l2.next;
+        if (map.has(complement)) {
+            return [map.get(complement), i];
         }
 
-        return dummy.next;
+        map.set(nums[i], i);
     }
-}
 
-//adding two number
+    return [];
+};
+
+// Test
+console.log(twoSum([2, 7, 11, 15], 9));
+console.log(twoSum([3, 2, 4], 6));
+console.log(twoSum([3, 3], 6));
+
+//Case 2
